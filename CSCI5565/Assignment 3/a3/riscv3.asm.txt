@@ -1,0 +1,110 @@
+#Team Member
+#Qingyun Zhang 2095754
+#Sicong Liu 2089129
+#Ying Lu 2093558
+
+.data
+input1: .word 5           # Declare input1 with an initial value of 5
+input2: .word 3           # Declare input2 with an initial value of 3
+
+.text
+.globl _start
+_start:
+    # Print input1
+    la a1, input1         # Load address of input1 into a1
+    lw a2, 0(a1)          # Load value of input1 into a2
+    li a0, 1              # System call number for print integer
+    mv a1, a2             # Move value to a1
+    ecall                 # System call to print input1 value
+
+    # Print a newline character
+    li a1, 10             # Load ASCII value of newline into a1
+    li a0, 11             # System call number for print character
+    ecall                 # System call to print the newline character
+
+    # Print the address of input1
+    la a1, input1         # Reload address of input1 into a1
+    li a0, 1              # System call number for print integer (reuse)
+    ecall                 # System call to print the address of input1
+
+    # Print a newline character (optional, for clarity in output)
+    li a1, 10             # Load ASCII value of newline into a1 again
+    li a0, 11             # System call number for print character
+    ecall                 # System call to print the newline character
+    
+    # Print input2
+    la a1, input2         # Load address of input2 into a1
+    lw a2, 0(a1)          # Load value of input2 into a2
+    li a0, 1              # System call number for print integer
+    mv a1, a2             # Move value to a1
+    ecall                 # System call to print input2 value
+
+    # Print a newline character
+    li a1, 10             # Load ASCII value of newline into a1
+    li a0, 11             # System call number for print character
+    ecall                 # System call to print the newline character
+    
+    # Print the address of input2
+    la a1, input2         # Reload address of input2 into a1
+    li a0, 1              # System call number for print integer (reuse)
+    ecall                 # System call to print the address of input2
+
+    # Print a newline character
+    li a1, 10             # Load ASCII value of newline into a1
+    li a0, 11             # System call number for print character
+    ecall                 # System call to print the newline character
+    
+    # Add 1 to input1 and print the result
+    la a1, input1         # Reload address of input1 into a1
+    lw a2, 0(a1)          # Load current value of input1 into a2
+    addi a2, a2, 1        # Add 1 to the value in a2
+    sw a2, 0(a1)          # Store the incremented value back to input1
+    li a0, 1              # System call number for print integer
+    mv a1, a2             # Move incremented value to a1
+    ecall                 # System call to print the new value of input1
+
+    # Print a newline character
+    li a1, 10             # Load ASCII value of newline into a1
+    li a0, 11             # System call number for print character
+    ecall                 # System call to print the newline character
+    
+     # Add 1 to input2 and print the result
+    la a1, input2         # Reload address of input2 into a1
+    lw a2, 0(a1)          # Load current value of input2 into a2
+    addi a2, a2, 1        # Add 1 to the value in a2
+    sw a2, 0(a1)          # Store the incremented value back to input2
+    li a0, 1              # System call number for print integer
+    mv a1, a2             # Move incremented value to a1
+    ecall                 # System call to print the new value of input2
+
+    # Print a newline character
+    li a1, 10             # Load ASCII value of newline into a1
+    li a0, 11             # System call number for print character
+    ecall                 # System call to print the newline character
+    
+     # Calculate sum of input1+1 and input2+1 and print the result
+    la a1, input1         # Reload address of input1 into a1
+    lw a2, 0(a1)          # Load incremented value of input1 into a2
+    la a1, input2         # Reload address of input2 into a1
+    lw a3, 0(a1)          # Load incremented value of input2 into a3
+    add a2, a2, a3        # Sum the values in a2 and a3
+    li a0, 1              # System call number for print integer
+    mv a1, a2             # Move sum to a1
+    ecall                 # System call to print the sum
+
+    # Print a newline character
+    li a1, 10             # Load ASCII value of newline into a1
+    li a0, 11             # System call number for print character
+    ecall                 # System call to print the newline character
+
+    # Store sum back to input1
+    la a1, input1         # Reload address of input1 into a1
+    sw a2, 0(a1)          # Store sum value back to the address of input1
+
+    # Print the address of sum, which is the same as the address of input1
+    li a0, 1              # System call number for print integer
+    ecall                 # System call to print the address of input1
+    
+    # Exit the program
+    li a0, 10             # System call number for exit
+    ecall                 # System call to exit the program
